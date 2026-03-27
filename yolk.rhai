@@ -18,7 +18,6 @@ export let eggs = #{
     waybar: #{ targets: "~/.config/waybar", enabled: io::command_available("waybar"), templates: [] },
     eww: #{ targets: "~/.config/eww", enabled: io::command_available("eww"), templates: [] },
 
-
     // ~/.local
     scripts: #{ targets: "~/.local/bin/scripts", enabled: true, templates: [] },
 };
