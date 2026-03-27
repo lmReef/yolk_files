@@ -1,0 +1,31 @@
+configuration {
+    font: "ubuntu-nerd-font 14";
+    show-icons: true;
+    drun-show-actions: true;
+    disable-history: false;
+    sort: false;
+    kb-element-next: "";
+    kb-cancel: "Escape,Control+g,Control+bracketleft,Tab";
+    kb-secondary-paste: "Control+Shift+v";
+    kb-secondary-copy: "Control+Shift+c";
+    kb-clear-line: "Control+c";
+    kb-move-char-back: "Left";
+    kb-move-front: "Control+b";
+    kb-move-end: "Control+e";
+    kb-accept-entry: "Return,KP_Enter";
+    kb-remove-to-eol: "";
+    kb-row-up: "Up,Control+k";
+    kb-row-down: "Down,Control+j";
+
+    timeout {
+	action: "kb-cancel";
+	delay:  0;
+    }
+
+    filebrowser {
+	directories-first: true;
+	sorting-method:    "name";
+    }
+}
+
+@theme "./theme.rasi"

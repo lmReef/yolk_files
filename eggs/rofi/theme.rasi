@@ -1,0 +1,49 @@
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+window {
+    border-radius: 4px;
+    width: 800px;
+    height: 400px;
+}
+mainbox { }
+message {
+    border-color: @foreground;
+}
+textbox { }
+listview { }
+element { 
+    border-radius: 4px;
+}
+element-icon {
+    background-color: inherit;
+}
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
+element-text.selected {
+    text-color: @background;
+}
+element.normal.normal { }
+element.normal.urgent { }
+element.normal.active { }
+element.selected.normal { }
+element.selected.urgent { }
+element.selected.active { }
+element.alternate.normal { }
+element.alternate.urgent { }
+element.alternate.active { }
+scrollbar {
+    width: 2px;
+    handle-width: 2px;
+    handle-color: @normal-foreground;
+}
+mode-switcher { }
+button { }
+button.selected { }
+inputbar { }
+case-indicator { }
+entry { }
+prompt { }
+inputbar { }
+textbox-prompt-colon { }

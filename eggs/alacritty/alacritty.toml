@@ -1,0 +1,33 @@
+# https://alacritty.org/config-alacritty.html
+# https://wiki.archlinux.org/title/Alacritty
+
+[general]
+live_config_reload = true
+import = ["themes/kanagawa_wave.toml"]
+
+[terminal]
+shell = { program = "/usr/bin/env", args = ["fish", "-l"] }
+
+[window]
+padding = { x = 0, y = 0 }
+opacity = 0.95
+blur = true
+# hyprland client selector is case sensitive
+title = "alacritty"
+class = { instance = "alacritty", general = "alacritty" }
+
+[bell]
+animation = "Ease"
+duration = 1
+# command = "<string>" | { program = "<string>", args = ["<string>",] }
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = { blinking = "On", shape = "Beam" }
+vi_mode_style = { blinking = "On", shape = "Block" }
+blink_timeout = 0
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font" }

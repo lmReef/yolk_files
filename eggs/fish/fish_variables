@@ -1,0 +1,44 @@
+# This file contains fish universal variable definitions.
+# VERSION: 3.0
+SETUVAR --path PATH:/home/reef\x2ematson/\x2elocal/share/mise/installs/java/22\x2e0\x2e2/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/java/25\x2e0\x2e1/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/lua/5\x2e4\x2e8/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/lua/5\x2e4\x2e8/luarocks/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/lua/5\x2e4\x2e8/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/lua/5\x2e4\x2e8/luarocks/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/python/3\x2e14\x2e2/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/npm/11\x2e8\x2e0/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/go/1\x2e25\x2e6/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/deno/2\x2e6\x2e5/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/deno/2\x2e6\x2e5/\x2edeno/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/bun/1\x2e3\x2e6/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/uv/0\x2e9\x2e26/uv\x2dx86_64\x2dunknown\x2dlinux\x2dmusl\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/prettier/3\x2e8\x2e1/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/groovy/5\x2e0\x2e4/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/mysql/8\x2e0\x2e33/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/mysql/8\x2e0\x2e33/scripts\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/chezmoi/2\x2e69\x2e3\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/node/25\x2e4\x2e0/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/watchexec/2\x2e3\x2e3/watchexec\x2d2\x2e3\x2e3\x2dx86_64\x2dunknown\x2dlinux\x2dmusl\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/poetry/2\x2e2\x2e1/bin\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/ruff/0\x2e14\x2e13/ruff\x2dx86_64\x2dunknown\x2dlinux\x2dmusl\x1e/home/reef\x2ematson/\x2elocal/share/mise/installs/dive/0\x2e13\x2e1\x1e/home/linuxbrew/\x2elinuxbrew/bin\x1e/home/linuxbrew/\x2elinuxbrew/sbin\x1e/home/reef\x2ematson/\x2ecargo/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/sbin\x1e/usr/bin\x1e/sbin\x1e/bin\x1e/usr/games\x1e/usr/local/games\x1e/snap/bin\x1e/snap/bin\x1e/home/reef\x2ematson/\x2elocal/bin/rtg\x2dtools\x1e/home/reef\x2ematson/\x2econfig/tempus\x2dapp\x2dmanager/bin\x1e/home/reef\x2ematson/\x2elocal/bin\x1e/home/reef\x2ematson/\x2elocal/bin/scripts\x1e/home/reef\x2ematson/\x2ecargo/bin\x1e/home/reef\x2ematson/\x2eatuin/bin\x1etarget/release/awww\x1e/target/release/awww\x2ddaemon
+SETUVAR __fish_initialized:3800
+SETUVAR fish_color_autosuggestion:727169
+SETUVAR fish_color_cancel:\x1d
+SETUVAR fish_color_command:7AA89F
+SETUVAR fish_color_comment:727169
+SETUVAR fish_color_cwd:\x1d
+SETUVAR fish_color_cwd_root:red
+SETUVAR fish_color_end:FF9E64
+SETUVAR fish_color_error:C34043
+SETUVAR fish_color_escape:D27E99
+SETUVAR fish_color_history_current:\x2d\x2dbold
+SETUVAR fish_color_host:\x1d
+SETUVAR fish_color_host_remote:\x1d
+SETUVAR fish_color_keyword:D27E99
+SETUVAR fish_color_match:7cafc2
+SETUVAR fish_color_normal:DCD7BA
+SETUVAR fish_color_operator:76946A
+SETUVAR fish_color_option:\x1d
+SETUVAR fish_color_param:957FB8
+SETUVAR fish_color_quote:C0A36E
+SETUVAR fish_color_redirection:DCD7BA
+SETUVAR fish_color_search_match:\x2d\x2dbackground\x3d2D4F67
+SETUVAR fish_color_selection:\x2d\x2dbackground\x3d2D4F67
+SETUVAR fish_color_status:red
+SETUVAR fish_color_user:\x1d
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+SETUVAR fish_greeting:\x1d
+SETUVAR fish_key_bindings:fish_default_key_bindings
+SETUVAR fish_pager_color_background:\x1d
+SETUVAR fish_pager_color_completion:DCD7BA
+SETUVAR fish_pager_color_description:727169
+SETUVAR fish_pager_color_prefix:7AA89F
+SETUVAR fish_pager_color_progress:727169
+SETUVAR fish_pager_color_secondary_background:\x1d
+SETUVAR fish_pager_color_secondary_completion:\x1d
+SETUVAR fish_pager_color_secondary_description:\x1d
+SETUVAR fish_pager_color_secondary_prefix:\x1d
+SETUVAR fish_pager_color_selected_background:\x1d
+SETUVAR fish_pager_color_selected_completion:\x1d
+SETUVAR fish_pager_color_selected_description:\x1d
+SETUVAR fish_pager_color_selected_prefix:\x1d

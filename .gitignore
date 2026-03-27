@@ -1,0 +1,7 @@
+/.git
+/.deployed_cache
+/.yolk_git
+
+# nvim
+/plugin/
+lazy-lock.json
