@@ -1,11 +1,11 @@
 function zg --description "fzf > rg > nvim"
     set -l RELOAD 'reload:rg --column --color=always --smart-case {q} || :'
-    set -l OPENER 'if test $FZF_SELECT_COUNT == 0; then
+    set -l OPENER 'if test $FZF_SELECT_COUNT = 0
             nvim {1} +{2}
         else
             nvim +cw -q {+f}
-        fi'
-    fzf --disabled --ansi --multi \
+        end'
+    fzf --disabled --ansi --multi --with-shell 'fish -c' \
         --bind "start:$RELOAD" --bind "change:$RELOAD" \
         --bind "enter:become:$OPENER" \
         --bind "ctrl-o:execute:$OPENER" \
