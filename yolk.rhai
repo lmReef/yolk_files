@@ -7,7 +7,7 @@ export let eggs = #{
 
     // ~/.config
     fish: #{ targets: "~/.config/fish", enabled: true, templates: [] },
-    nvim: #{ targets: "~/.config/nvim", enabled: true, templates: [] },
+    //nvim: #{ targets: "~/.config/nvim", enabled: true, templates: [] },
     alacritty: #{ targets: "~/.config/alacritty", enabled: io::command_available("alacritty"), templates: [] },
     hypr: #{ targets: "~/.config/hypr", enabled: "hyprland" in SYSTEM.desktop_env, templates: ["hyprland.conf", "keybinds.conf"] },
     paru: #{ targets: "~/.config/paru", enabled: "Arch" in SYSTEM.distro, templates: [] },
