@@ -8,6 +8,7 @@ return {
 		indent = {
 			animate = { enabled = false },
 		},
+		terminal = {},
 		-- scope = {},
 		-- rename = {},
 		-- keymap = {},

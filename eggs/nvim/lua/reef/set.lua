@@ -1,4 +1,4 @@
-vim.opt.shell = "/bin/fish"
+vim.opt.shell = "/usr/bin/env fish -i"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
