@@ -52,7 +52,7 @@ return {
 		opts = {
 			render = "wrapped-compact",
 			stages = "fade_in_slide_out",
-			fps = 90,
+			fps = 180,
 			timeout = 3000,
 			top_down = false,
 			background_colour = "TabLine",

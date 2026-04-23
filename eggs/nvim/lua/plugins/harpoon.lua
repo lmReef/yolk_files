@@ -29,5 +29,4 @@ return {
 		-- 	harpoon:list():next()
 		-- end)
 	end,
-	keys = "<leader>",
 }

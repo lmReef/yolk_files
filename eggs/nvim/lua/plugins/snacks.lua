@@ -9,9 +9,33 @@ return {
 			animate = { enabled = false },
 		},
 		terminal = {},
-		-- scope = {},
-		-- rename = {},
-		-- keymap = {},
+		styles = {},
+		scratch = { ft = "md" },
 	},
-	dependencies = { "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+	dependencies = { "nvim-tree/nvim-web-devicons" },
+	keys = {
+		-- terminal
+		{
+			"<leader>t",
+			function()
+				Snacks.terminal()
+			end,
+			desc = "Toggle terminal",
+		},
+		-- scratch buffer
+		{
+			"<leader>.",
+			function()
+				Snacks.scratch()
+			end,
+			desc = "Toggle Scratch Buffer",
+		},
+		{
+			"<leader>>",
+			function()
+				Snacks.scratch.select()
+			end,
+			desc = "Select Scratch Buffer",
+		},
+	},
 }
