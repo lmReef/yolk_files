@@ -27,13 +27,6 @@ return {
 			desc = "LiFFFe grep",
 		},
 		{
-			"<leader>pz",
-			function()
-				require("fff").live_grep({ grep = { modes = { "fuzzy", "plain" } } })
-			end,
-			desc = "Live fffuzy grep",
-		},
-		{
 			"<leader>pw",
 			function()
 				require("fff").live_grep({ query = vim.fn.expand("<cword>") })
