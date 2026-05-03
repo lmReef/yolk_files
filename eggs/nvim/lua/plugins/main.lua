@@ -47,4 +47,6 @@ return {
 			"xml",
 		},
 	},
+
+	{ "arborist-ts/arborist.nvim", opts = {} },
 }
