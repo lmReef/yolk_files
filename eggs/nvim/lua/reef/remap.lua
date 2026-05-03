@@ -34,42 +34,48 @@ vim.keymap.set("n", "<leader>ws", ":noa w<cr>", { desc = ":noa w" })
 vim.keymap.set("n", "<leader>wq", ":wq<cr>", { desc = ":wq" })
 vim.keymap.set("n", "<leader>q", ":q!<cr>", { desc = ":q!" })
 
--- tmux
--- local function get_cmd()
--- 	local function run_cmd(c)
--- 		local cmd_prefix = 'silent !tmux send-keys -t .1 "'
--- 		local cmd_suffix = '"'
--- 		vim.cmd(cmd_prefix .. c .. cmd_suffix)
--- 	end
+-- run / build / tool
+local function get_cmd()
+	local Snacks = require("snacks")
+	local function run_cmd(c, show_output)
+		if show_output then
+			Snacks.terminal.open(c, {
+				win = { position = "bottom" },
+				start_insert = false,
+				auto_insert = true,
+				interactive = false,
+				auto_close = true,
+			})
+		else
+			vim.cmd("silent !" .. c)
+		end
+	end
 
--- 	run_cmd("^c")
--- 	run_cmd("^l")
+	-- check for env var override first
+	local from_env = os.getenv("nvim_run")
+	if from_env then
+		run_cmd(from_env, true)
+	else
+		-- file based cmd handling
+		local ft = vim.api.nvim_get_option_value("ft", {})
+		local fp = vim.fn.expand("%")
 
--- 	-- check for env var override first
--- 	local from_env = os.getenv("nvim_run")
--- 	if from_env then
--- 		run_cmd(from_env)
--- 	else
--- 		-- file based cmd handling
--- 		local ft = vim.api.nvim_get_option_value("ft", {})
--- 		local fp = vim.fn.expand("%")
+		if ft == "gdscript" then
+			run_cmd("godot --remote-debug tcp://127.0.0.1:6007", true)
+		elseif ft == "rust" then
+			run_cmd("cargo run --release", true)
+		elseif ft == "javascript" or ft == "typescript" then
+			run_cmd("pnpm run dev", true)
+		elseif ft == "nextflow" then
+			if string.match(fp, ".test") then
+				run_cmd("nf-test test " .. fp, true)
+			else
+				run_cmd("just dry-run", true)
+			end
+		elseif ft == "dockerfile" then
+			run_cmd("docker build . --build-arg 'DOCKER_CONTEXT=.' --network=host", true)
+		end
+	end
+end
 
--- 		if ft == "rust" then
--- 			run_cmd("cargo run --release")
--- 		elseif ft == "javascript" or ft == "typescript" then
--- 			run_cmd("pnpm run dev")
--- 		elseif ft == "nextflow" then
--- 			if string.match(fp, ".test") then
--- 				run_cmd("nf-test test " .. fp)
--- 			else
--- 				run_cmd("just dry-run")
--- 			end
--- 		elseif ft == "dockerfile" then
--- 			run_cmd("docker build . --build-arg 'DOCKER_CONTEXT=.' --network=host")
--- 		end
--- 	end
-
--- 	run_cmd("Enter")
--- end
-
--- vim.keymap.set("n", "<leader>j", get_cmd, { desc = "Run command in next pane" })
+vim.keymap.set("n", "<leader>j", get_cmd, { desc = "Run command in next pane" })

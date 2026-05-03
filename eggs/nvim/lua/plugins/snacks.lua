@@ -50,6 +50,27 @@ return {
 
 			-- picker
 			{
+				"<leader>pf",
+				function()
+					Snacks.picker.pick("files")
+				end,
+				desc = "git status",
+			},
+			{
+				"<leader>ps",
+				function()
+					Snacks.picker.pick("grep")
+				end,
+				desc = "git status",
+			},
+			{
+				"<leader>pw",
+				function()
+					Snacks.picker.pick("grep_word")
+				end,
+				desc = "git status",
+			},
+			{
 				"<leader>pg",
 				function()
 					Snacks.picker.pick("git_status")
