@@ -3,7 +3,8 @@ if status is-interactive
 
     set -a PATH \
         ~/.local/bin \
-        ~/.local/bin/scripts
+        ~/.local/bin/scripts \
+        ~/.cargo/bin
 
     set -x EDITOR nvim
 
@@ -12,4 +13,5 @@ if status is-interactive
     zoxide init fish | source
     fzf --fish | source
     jj util completion fish | source
+    wezterm shell-completion --shell fish | source
 end
