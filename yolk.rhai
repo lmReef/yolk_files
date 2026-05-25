@@ -16,7 +16,7 @@ export let eggs = #{
     lsd: #{ targets: "~/.config/lsd", enabled: true, templates: [] },
     rofi: #{ targets: "~/.config/rofi", enabled: io::command_available("rofi"), templates: [] },
     swaync: #{ targets: "~/.config/swaync", enabled: io::command_available("swaync"), templates: [] },
-    waybar: #{ targets: "~/.config/waybar", enabled: io::command_available("waybar"), templates: [] },
+    waybar: #{ targets: "~/.config/waybar", enabled: io::command_available("waybar"), templates: ["config"] },
     eww: #{ targets: "~/.config/eww", enabled: io::command_available("eww"), templates: [] },
 
     // ~/.local
