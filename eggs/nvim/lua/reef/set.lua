@@ -2,6 +2,7 @@ vim.opt.shell = "/usr/bin/env fish -i"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.splitbelow = true
 
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
