@@ -70,13 +70,6 @@ config.leader = {
 }
 config.keys = {
 	{
-		key = "Escape",
-		mods = "LEADER",
-		action = act.ShowLauncherArgs({
-			flags = "FUZZY|LAUNCH_MENU_ITEMS|WORKSPACES|DOMAINS",
-		}),
-	},
-	{
 		key = "Space",
 		mods = "LEADER",
 		action = act.ActivateCommandPalette,

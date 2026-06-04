@@ -22,6 +22,10 @@
 	autoSetupRemote = true
 [pull]
 	ff = only
+[merge]
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+    layout = LOCAL,REMOTE
 [diff "jupyternotebook"]
 	command = git-nbdiffdriver diff -s
 [merge "jupyternotebook"]
@@ -35,3 +39,8 @@
 	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
+[includeIf "gitdir:~/projects/netvalue/**"]
+	path = ~/.gitconfig-netvalue
+[includeIf "gitdir:~/projects/tempus/**"]
+	path = ~/.gitconfig-tempus
+
