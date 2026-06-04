@@ -10,7 +10,7 @@ return {
 		priority = 1000,
 		lazy = false,
 		opts = {
-			bigfile = {},
+			-- bigfile = {},
 			terminal = {},
 			styles = {},
 			scratch = { ft = "md" },
@@ -122,9 +122,9 @@ return {
 			{
 				"<leader>pd",
 				function()
-					Snacks.picker.diagnostics_buffer()
+					Snacks.picker.diagnostics()
 				end,
-				desc = "buffer diagnostics",
+				desc = "diagnostics",
 			},
 			{
 				"<leader>pp",

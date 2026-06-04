@@ -20,7 +20,6 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete no history" })
 vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete no history" })
 
-vim.keymap.set("n", "<C-_>", [[:/\<<C-r><C-w>\><cr>]], { desc = "Jump to next instance of word" })
 vim.keymap.set(
 	"n",
 	"<leader>s",
@@ -78,4 +77,4 @@ local function get_cmd()
 	end
 end
 
-vim.keymap.set("n", "<leader>j", get_cmd, { desc = "Run command in next pane" })
+vim.keymap.set("n", "<leader>n", get_cmd, { desc = "Run command in next pane" })

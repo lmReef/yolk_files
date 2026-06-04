@@ -95,6 +95,9 @@ return {
 		-- branch = "main",
 		config = function()
 			require("jj").setup({})
+			vim.keymap.set("n", "<leader>jj", ":J<CR>", { desc = "jj" })
+			vim.keymap.set("n", "<leader>jl", ":J log<CR>", { desc = "jj log" })
+			vim.keymap.set("n", "<leader>jc", ":J commit<CR>", { desc = "jj commit" })
 		end,
 	},
 }
