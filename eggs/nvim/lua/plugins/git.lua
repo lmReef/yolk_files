@@ -98,6 +98,12 @@ return {
 			vim.keymap.set("n", "<leader>jj", ":J<CR>", { desc = "jj" })
 			vim.keymap.set("n", "<leader>jl", ":J log<CR>", { desc = "jj log" })
 			vim.keymap.set("n", "<leader>jc", ":J commit<CR>", { desc = "jj commit" })
+
+			local jj_picker = require("jj.picker")
+			jj_picker.setup({})
+
+			vim.keymap.set("n", "<leader>jd", jj_picker.status, { desc = "jj diff picker" })
+			vim.keymap.set("n", "<leader>jf", jj_picker.file_history, { desc = "jj file_history picker" })
 		end,
 	},
 }
