@@ -5,7 +5,7 @@
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [user]
-	email = ReefMatson@proton.me
+	email = git@reefmatson.com
 	name = lmReef
 [init]
 	defaultBranch = main
