@@ -13,6 +13,8 @@
 	co = checkout
 	br = branch
 	st = status
+	a = add
+	c = commit
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
