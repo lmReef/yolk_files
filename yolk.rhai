@@ -20,5 +20,5 @@ export let eggs = #{
     eww: #{ targets: "~/.config/eww", enabled: io::command_available("eww"), templates: [] },
 
     // ~/.local
-    scripts: #{ targets: "~/.local/bin/scripts", enabled: true, templates: [] },
+    scripts: #{ targets: "~/.local/bin/scripts", strategy: "merge", enabled: true, templates: [] },
 };
