@@ -36,7 +36,7 @@ yay.opt.completion_refresh_time = 7 -- Completion cache refresh days: -1 (never)
 yay.opt.max_concurrent_downloads = 0 -- Parallel PKGBUILD source downloads; 0 uses CPU count.
 
 -- Booleans
-yay.opt.bottom_up = false -- Show AUR packages before repo packages in mixed results.
+yay.opt.bottom_up = true -- Show AUR packages before repo packages in mixed results.
 yay.opt.sudo_loop = true -- Keep sudo session alive in the background during long builds.
 yay.opt.devel = false -- Check development/VCS packages on sysupgrade.
 yay.opt.clean_after = true -- Remove untracked files after install.
