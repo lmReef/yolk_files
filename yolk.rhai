@@ -18,6 +18,7 @@ export let eggs = #{
     rofi: #{ targets: "~/.config/rofi", enabled: io::command_available("rofi"), templates: [] },
     swaync: #{ targets: "~/.config/swaync", enabled: io::command_available("swaync"), templates: [] },
     waybar: #{ targets: "~/.config/waybar", enabled: io::command_available("waybar"), templates: ["config"] },
+    ashell: #{ targets: "~/.config/ashell", enabled: io::command_available("ashell"), templates: [] },
     eww: #{ targets: "~/.config/eww", enabled: io::command_available("eww"), templates: [] },
 
     // ~/.local

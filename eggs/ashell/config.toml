@@ -1,0 +1,29 @@
+enable_esc_key = true
+
+[animations]
+enabled = true
+
+[modules]
+left = ["Workspaces", "Tray", "MediaPlayer"]
+center = ["Tempo"]
+right = ["SystemInfo", ["Privacy", "Settings", "Notifications"]]
+
+[appearance]
+scale_factor = 1.02
+
+success_color = "#76946A"
+warning_color = "#C0A36E"
+danger_color = "#C34043"
+text_color = "#dcd7ba"
+background_color = "#1f1f28"
+workspace_colors = [ "#fab387", "#2D4F67", "#957FB8"]
+
+[appearance.primary_color]
+base = "#fab387"
+text = "#1e1e2e"
+
+[tempo]
+weather_location = { Coordinates = [-37.78333, 175.28333] }
+
+[tray]
+right_click = "menu"
