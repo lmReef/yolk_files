@@ -5,8 +5,8 @@ enabled = true
 
 [modules]
 left = ["Workspaces", "Tray", "MediaPlayer"]
-center = ["Tempo"]
-right = ["SystemInfo", ["Privacy", "Settings", "Notifications"]]
+center = []
+right = ["Tempo", "SystemInfo", ["Privacy", "Settings", "Notifications"]]
 
 [appearance]
 scale_factor = 1.02
