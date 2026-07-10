@@ -23,6 +23,7 @@ base = "#fab387"
 text = "#1e1e2e"
 
 [tempo]
+clock_format = "%a %e %b | %l:%M%P"
 weather_location = { Coordinates = [-37.78333, 175.28333] }
 
 [tray]
