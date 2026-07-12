@@ -9,7 +9,7 @@ center = ["Tempo"]
 right = ["SystemInfo", ["Privacy", "Settings", "Notifications"]]
 
 [appearance]
-scale_factor = 1.02
+scale_factor = 1
 
 success_color = "#76946A"
 warning_color = "#C0A36E"
