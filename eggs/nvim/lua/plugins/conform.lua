@@ -1,10 +1,11 @@
 return {
 	"stevearc/conform.nvim",
 	config = function()
-		require("conform").setup({
+		local conform = require("conform")
+		conform.setup({
 			format_on_save = {
 				lsp_format = "fallback",
-				timeout_ms = 500,
+				timeout_ms = 1000,
 			},
 			formatters_by_ft = {
 				lua = { "stylua" },
@@ -28,5 +29,14 @@ return {
 			["*"] = { "trim_whitespace" },
 			["_"] = {},
 		})
+
+		-- vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+		-- 	-- pattern = {'*.c', '*.h'},
+		-- 	callback = function(ev)
+		-- 		if ev.new_mode == "NORMAL" then
+		-- 			conform.format()
+		-- 		end
+		-- 	end,
+		-- })
 	end,
 }

@@ -1,6 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	"letieu/harpoon-lualine",
+	-- "letieu/harpoon-lualine",
 
 	{
 		"brenoprata10/nvim-highlight-colors",

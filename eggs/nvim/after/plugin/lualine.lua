@@ -36,7 +36,7 @@ require("lualine").setup({
 			"diff",
 		},
 		lualine_c = {
-			"harpoon2",
+			-- "harpoon2",
 		},
 		lualine_x = {
 			"filetype",
