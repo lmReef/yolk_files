@@ -4,6 +4,7 @@ export let eggs = #{
     // ~/
     git: #{ targets: #{".gitconfig": "~/.gitconfig"}, enabled: true, templates: [] },
     tmux: #{ targets: #{".tmux.conf": "~/.tmux.conf"}, enabled: true, templates: [] },
+    pi: #{ targets: #{"pi": "~/.pi"}, enabled: io::command_available("pi"), templates: [] },
 
     // ~/.config
     fish: #{ targets: "~/.config/fish", enabled: true, templates: [] },

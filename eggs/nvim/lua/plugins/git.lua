@@ -98,6 +98,7 @@ return {
 			vim.keymap.set("n", "<leader>jj", ":J<CR>", { desc = "jj" })
 			vim.keymap.set("n", "<leader>jl", ":J log<CR>", { desc = "jj log" })
 			vim.keymap.set("n", "<leader>jc", ":J commit<CR>", { desc = "jj commit" })
+			vim.keymap.set("n", "<leader>js", ":J squash<CR>", { desc = "jj squash", silent = true })
 
 			local jj_picker = require("jj.picker")
 			jj_picker.setup({})

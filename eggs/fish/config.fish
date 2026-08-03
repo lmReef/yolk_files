@@ -14,4 +14,11 @@ if status is-interactive
     fzf --fish | source
     jj util completion fish | source
     wezterm shell-completion --shell fish | source
+
+    # pnpm
+    set -gx PNPM_HOME "/home/reef/.local/share/pnpm"
+    if not string match -q -- "$PNPM_HOME/bin" $PATH
+        set -gx PATH "$PNPM_HOME/bin" $PATH
+    end
+    # pnpm end
 end

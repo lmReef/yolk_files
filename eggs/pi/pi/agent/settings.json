@@ -1,0 +1,17 @@
+{
+  "lastChangelogVersion": "0.82.0",
+  "theme": "dark",
+  "enableInstallTelemetry": false,
+  "defaultProvider": "opencode",
+  "defaultModel": "minimax-m3",
+  "enabledModels": [
+    "opencode/minimax-m3",
+    "opencode/deepseek-v4-flash",
+    "opencode/big-pickle"
+  ],
+  "defaultThinkingLevel": "high",
+  "hideThinkingBlock": true,
+  "packages": [
+    "npm:@dietrichgebert/ponytail"
+  ]
+}

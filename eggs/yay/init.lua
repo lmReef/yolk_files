@@ -53,7 +53,7 @@ yay.opt.single_line_results = false -- Use single-line search result format.
 yay.opt.separate_sources = true -- Separate query results by source (repo vs AUR).
 yay.opt.debug = false -- Enable debug logging and local init.lua lookup convenience.
 yay.opt.rpc = true -- Use AUR RPC for dependency/query operations.
-yay.opt.double_confirm = true -- Ask for confirmation before and after builds during upgrades.
+yay.opt.double_confirm = false -- Ask for confirmation before and after builds during upgrades.
 
 -- Hooks
 -- Run Lua before yay prints the upgrade exclusion menu. Return package names

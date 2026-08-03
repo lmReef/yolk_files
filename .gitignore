@@ -2,8 +2,15 @@
 /.deployed_cache
 /.yolk_git
 
+npm/
+
 # nvim
 /plugin/
 lazy-lock.json
 
 fish_variables
+
+# pi
+sessions/
+auth.json
+models-store.json
