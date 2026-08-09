@@ -2,8 +2,6 @@
 /.deployed_cache
 /.yolk_git
 
-npm/
-
 # nvim
 /plugin/
 lazy-lock.json
