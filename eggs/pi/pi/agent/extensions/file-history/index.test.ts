@@ -1,6 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { diffCounts, newDeletionItems, removedKnownItems, summarizeChange } from "./index.ts";
+import {
+  diffCounts,
+  historyWindow,
+  newDeletionItems,
+  removedKnownItems,
+  summarizeChange,
+  type HistoryItem,
+} from "./index.ts";
 
 test("summarizes new, deleted, added, removed, and mixed edits", () => {
   assert.deepEqual(summarizeChange("/repo/src/new.ts", null, "one\ntwo\n", "/repo"), {
@@ -28,4 +35,22 @@ test("summarizes new, deleted, added, removed, and mixed edits", () => {
     ),
     [{ kind: "D", count: 7, path: "src/untracked.ts" }],
   );
+});
+
+test("windows history ten entries at a time with boundary indicators", () => {
+  const history: HistoryItem[] = Array.from({ length: 12 }, (_, count) => ({
+    kind: "+",
+    count,
+    path: `${count}.ts`,
+  }));
+  const latest = historyWindow(history, 0);
+  assert.deepEqual(latest.items.map(({ count }) => count), [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]);
+  assert.equal(latest.hasAbove, false);
+  assert.equal(latest.hasBelow, true);
+
+  const oldest = historyWindow(history, 99);
+  assert.deepEqual(oldest.items.map(({ count }) => count), [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
+  assert.equal(oldest.offset, 2);
+  assert.equal(oldest.hasAbove, true);
+  assert.equal(oldest.hasBelow, false);
 });

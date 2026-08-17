@@ -23,11 +23,14 @@ type DeletionSnapshot = {
 };
 
 const STATE_KEY = "piEditHistory";
+const PAGE_SIZE = 7;
 
 function lines(content: string): string[] {
   const normalized = content.replace(/\r\n?/g, "\n");
   if (!normalized) return [];
-  return (normalized.endsWith("\n") ? normalized.slice(0, -1) : normalized).split("\n");
+  return (
+    normalized.endsWith("\n") ? normalized.slice(0, -1) : normalized
+  ).split("\n");
 }
 
 export function diffCounts(before: string, after: string) {
@@ -37,8 +40,17 @@ export function diffCounts(before: string, after: string) {
   let oldEnd = oldLines.length;
   let newEnd = newLines.length;
 
-  while (start < oldEnd && start < newEnd && oldLines[start] === newLines[start]) start++;
-  while (oldEnd > start && newEnd > start && oldLines[oldEnd - 1] === newLines[newEnd - 1]) {
+  while (
+    start < oldEnd &&
+    start < newEnd &&
+    oldLines[start] === newLines[start]
+  )
+    start++;
+  while (
+    oldEnd > start &&
+    newEnd > start &&
+    oldLines[oldEnd - 1] === newLines[newEnd - 1]
+  ) {
     oldEnd--;
     newEnd--;
   }
@@ -55,9 +67,10 @@ export function diffCounts(before: string, after: string) {
   for (const oldLine of oldMiddle) {
     const current = new Uint32Array(newMiddle.length + 1);
     for (let j = 1; j <= newMiddle.length; j++) {
-      current[j] = oldLine === newMiddle[j - 1]
-        ? previous[j - 1]! + 1
-        : Math.max(previous[j]!, current[j - 1]!);
+      current[j] =
+        oldLine === newMiddle[j - 1]
+          ? previous[j - 1]! + 1
+          : Math.max(previous[j]!, current[j - 1]!);
     }
     previous = current;
   }
@@ -95,9 +108,20 @@ export function summarizeChange(
 ): HistoryItem | undefined {
   if (before === undefined) return;
   if (before === null) {
-    return after === null ? undefined : { kind: "N", count: lines(after).length, path: relativePath(path, cwd) };
+    return after === null
+      ? undefined
+      : {
+          kind: "N",
+          count: lines(after).length,
+          path: relativePath(path, cwd),
+        };
   }
-  if (after === null) return { kind: "D", count: lines(before).length, path: relativePath(path, cwd) };
+  if (after === null)
+    return {
+      kind: "D",
+      count: lines(before).length,
+      path: relativePath(path, cwd),
+    };
   const { additions, removals } = diffCounts(before, after);
   return itemFromCounts(path, additions, removals, cwd);
 }
@@ -115,9 +139,11 @@ function countsFromDisplayDiff(diff: string) {
 function isHistoryItem(value: unknown): value is HistoryItem {
   if (!value || typeof value !== "object") return false;
   const item = value as Partial<HistoryItem>;
-  return ["+", "-", "+/-", "N", "D"].includes(item.kind ?? "")
-    && typeof item.count === "number"
-    && typeof item.path === "string";
+  return (
+    ["+", "-", "+/-", "N", "D"].includes(item.kind ?? "") &&
+    typeof item.count === "number" &&
+    typeof item.path === "string"
+  );
 }
 
 function storedItems(value: unknown): HistoryItem[] {
@@ -143,32 +169,91 @@ export function removedKnownItems(
     .map(([path, count]) => ({ kind: "D", count, path }));
 }
 
+export function historyWindow(
+  history: HistoryItem[],
+  offset: number,
+  limit = PAGE_SIZE,
+) {
+  const ordered = [...history].reverse();
+  const clampedOffset = Math.max(
+    0,
+    Math.min(offset, Math.max(0, ordered.length - limit)),
+  );
+  return {
+    items: ordered.slice(clampedOffset, clampedOffset + limit),
+    offset: clampedOffset,
+    hasAbove: clampedOffset > 0,
+    hasBelow: clampedOffset + limit < ordered.length,
+  };
+}
+
 class FileHistoryPanel {
   private readonly history: HistoryItem[];
   private readonly theme: Theme;
+  private offset = 0;
 
   constructor(history: HistoryItem[], theme: Theme) {
     this.history = history;
     this.theme = theme;
   }
 
+  scroll(delta: number): boolean {
+    const next = historyWindow(this.history, this.offset + delta).offset;
+    if (next === this.offset) return false;
+    this.offset = next;
+    return true;
+  }
+
+  entriesAdded(count: number): void {
+    if (this.offset > 0) this.offset += count;
+  }
+
   render(width: number): string[] {
     const innerWidth = Math.max(1, width - 1);
     const border = (text: string) => this.theme.fg("borderMuted", text);
-    const row = (content: string) => {
-      const clipped = truncateToWidth(content, innerWidth, "…");
-      return border("│") + clipped + " ".repeat(Math.max(0, innerWidth - visibleWidth(clipped)));
+    const row = (content: string, trailing = "") => {
+      const contentWidth = innerWidth - visibleWidth(trailing);
+      const clipped = truncateToWidth(content, contentWidth, "…");
+      return (
+        border("│") +
+        clipped +
+        " ".repeat(Math.max(0, contentWidth - visibleWidth(clipped))) +
+        trailing
+      );
     };
     const output: string[] = [];
 
-    if (!this.history.length) output.push(row(this.theme.fg("dim", " No edits yet")));
-    for (const item of this.history.slice(-200).reverse()) {
-      const color = item.kind === "+" || item.kind === "N"
-        ? "success"
-        : item.kind === "-" || item.kind === "D"
-          ? "error"
-          : "mdHeading";
-      output.push(row(` ${this.theme.fg(color, `${item.kind}${item.count}`)} ${item.path}`));
+    // placeholder text before edits are made
+    if (!this.history.length) output.push(row(this.theme.fg("dim", "")));
+    const window = historyWindow(this.history, this.offset);
+    this.offset = window.offset;
+    const labelWidth = Math.max(
+      0,
+      ...this.history.map((item) =>
+        visibleWidth(`${item.kind === "+/-" ? "~" : item.kind}${item.count}`),
+      ),
+    );
+    for (const [index, item] of window.items.entries()) {
+      const label = `${item.kind === "+/-" ? "~" : item.kind}${item.count}`;
+      const color =
+        item.kind === "+" || item.kind === "N"
+          ? "success"
+          : item.kind === "-" || item.kind === "D"
+            ? "error"
+            : "mdHeading";
+      const padding = " ".repeat(labelWidth - visibleWidth(label));
+      const indicator =
+        index === 0 && window.hasAbove
+          ? this.theme.fg("dim", "↑")
+          : index === window.items.length - 1 && window.hasBelow
+            ? this.theme.fg("dim", "↓")
+            : "";
+      output.push(
+        row(
+          ` ${this.theme.fg(color, label)}${padding} ${item.path}`,
+          indicator,
+        ),
+      );
     }
 
     output.push(border(`╰${"─".repeat(innerWidth)}`));
@@ -183,6 +268,7 @@ export default function (pi: ExtensionAPI) {
   let pending = new Map<string, Snapshot>();
   let pendingDeletions = new Map<string, DeletionSnapshot>();
   let requestRender = () => {};
+  let panel: FileHistoryPanel | undefined;
   let overlay: OverlayHandle | undefined;
   let cwd = "";
 
@@ -194,14 +280,24 @@ export default function (pi: ExtensionAPI) {
     try {
       const result = await pi.exec(
         "git",
-        ["diff", "HEAD", "--relative", "--numstat", "--diff-filter=D", "--no-renames", "-z", "--"],
+        [
+          "diff",
+          "HEAD",
+          "--relative",
+          "--numstat",
+          "--diff-filter=D",
+          "--no-renames",
+          "-z",
+          "--",
+        ],
         { cwd, timeout: 5000 },
       );
       if (result.code !== 0) return;
       const deleted = new Map<string, number>();
       for (const row of result.stdout.split("\0")) {
         const match = row.match(/^[-\d]+\t([-\d]+)\t([\s\S]+)$/);
-        if (match) deleted.set(match[2]!, match[1] === "-" ? 0 : Number(match[1]));
+        if (match)
+          deleted.set(match[2]!, match[1] === "-" ? 0 : Number(match[1]));
       }
       return deleted;
     } catch {
@@ -215,13 +311,18 @@ export default function (pi: ExtensionAPI) {
       else current.add(item.path);
     }
     const counts = new Map<string, number>();
-    await Promise.all([...current].map(async (path) => {
-      try {
-        counts.set(path, lines(await readFile(resolve(cwd, path), "utf8")).length);
-      } catch {
-        // Missing files are omitted.
-      }
-    }));
+    await Promise.all(
+      [...current].map(async (path) => {
+        try {
+          counts.set(
+            path,
+            lines(await readFile(resolve(cwd, path), "utf8")).length,
+          );
+        } catch {
+          // Missing files are omitted.
+        }
+      }),
+    );
     return counts;
   };
 
@@ -230,7 +331,8 @@ export default function (pi: ExtensionAPI) {
     pending = new Map();
     pendingDeletions = new Map();
     history = ctx.sessionManager.getBranch().flatMap((entry) => {
-      if (entry.type !== "message" || entry.message.role !== "toolResult") return [];
+      if (entry.type !== "message" || entry.message.role !== "toolResult")
+        return [];
       const details = entry.message.details;
       if (!details || typeof details !== "object") return [];
       return storedItems((details as Record<string, unknown>)[STATE_KEY]);
@@ -240,7 +342,8 @@ export default function (pi: ExtensionAPI) {
     void ctx.ui.custom<void>(
       (tui, theme) => {
         requestRender = () => tui.requestRender();
-        return new FileHistoryPanel(history, theme);
+        panel = new FileHistoryPanel(history, theme);
+        return panel;
       },
       {
         overlay: true,
@@ -252,7 +355,9 @@ export default function (pi: ExtensionAPI) {
           margin: { top: 0, right: 0 },
           nonCapturing: true,
         },
-        onHandle: (handle) => { overlay = handle; },
+        onHandle: (handle) => {
+          overlay = handle;
+        },
       },
     );
   });
@@ -260,18 +365,43 @@ export default function (pi: ExtensionAPI) {
   pi.on("session_shutdown", () => {
     overlay?.hide();
     overlay = undefined;
+    panel = undefined;
     requestRender = () => {};
+  });
+
+  pi.registerShortcut("alt+j", {
+    description: "Scroll file history down",
+    handler: () => {
+      if (panel?.scroll(1)) requestRender();
+    },
+  });
+
+  pi.registerShortcut("alt+k", {
+    description: "Scroll file history up",
+    handler: () => {
+      if (panel?.scroll(-1)) requestRender();
+    },
   });
 
   pi.on("tool_call", async (event) => {
     if (isToolCallEventType("bash", event)) {
       if (/\brm(?:\s|$)/.test(event.input.command)) {
-        const [git, knownFilesBefore] = await Promise.all([deletedFiles(), knownFiles()]);
-        pendingDeletions.set(event.toolCallId, { git, knownFiles: knownFilesBefore });
+        const [git, knownFilesBefore] = await Promise.all([
+          deletedFiles(),
+          knownFiles(),
+        ]);
+        pendingDeletions.set(event.toolCallId, {
+          git,
+          knownFiles: knownFilesBefore,
+        });
       }
       return;
     }
-    if (!isToolCallEventType("edit", event) && !isToolCallEventType("write", event)) return;
+    if (
+      !isToolCallEventType("edit", event) &&
+      !isToolCallEventType("write", event)
+    )
+      return;
     const path = event.input.path;
     if (typeof path !== "string") return;
     const resolved = absolutePath(path);
@@ -279,7 +409,13 @@ export default function (pi: ExtensionAPI) {
     try {
       before = await readFile(resolved, "utf8");
     } catch (error) {
-      before = error && typeof error === "object" && "code" in error && error.code === "ENOENT" ? null : undefined;
+      before =
+        error &&
+        typeof error === "object" &&
+        "code" in error &&
+        error.code === "ENOENT"
+          ? null
+          : undefined;
     }
     pending.set(event.toolCallId, { absolutePath: resolved, before });
   });
@@ -289,17 +425,24 @@ export default function (pi: ExtensionAPI) {
       const before = pendingDeletions.get(event.toolCallId);
       pendingDeletions.delete(event.toolCallId);
       if (!before) return;
-      const [gitAfter, knownFilesAfter] = await Promise.all([deletedFiles(), knownFiles()]);
+      const [gitAfter, knownFilesAfter] = await Promise.all([
+        deletedFiles(),
+        knownFiles(),
+      ]);
       const byPath = new Map<string, HistoryItem>();
       if (before.git && gitAfter) {
-        for (const item of newDeletionItems(before.git, gitAfter)) byPath.set(item.path, item);
+        for (const item of newDeletionItems(before.git, gitAfter))
+          byPath.set(item.path, item);
       }
-      for (const item of removedKnownItems(before.knownFiles, knownFilesAfter)) byPath.set(item.path, item);
+      for (const item of removedKnownItems(before.knownFiles, knownFilesAfter))
+        byPath.set(item.path, item);
       const items = [...byPath.values()];
       if (!items.length) return;
+      panel?.entriesAdded(items.length);
       history.push(...items);
       requestRender();
-      const details = event.details && typeof event.details === "object" ? event.details : {};
+      const details =
+        event.details && typeof event.details === "object" ? event.details : {};
       return { details: { ...details, [STATE_KEY]: items } };
     }
     if (!isEditToolResult(event) && !isWriteToolResult(event)) return;
@@ -310,16 +453,24 @@ export default function (pi: ExtensionAPI) {
     let item: HistoryItem | undefined;
     if (isWriteToolResult(event)) {
       const content = event.input.content;
-      if (typeof content === "string") item = summarizeChange(snapshot.absolutePath, snapshot.before, content, cwd);
+      if (typeof content === "string")
+        item = summarizeChange(
+          snapshot.absolutePath,
+          snapshot.before,
+          content,
+          cwd,
+        );
     } else if (event.details?.diff) {
       const { additions, removals } = countsFromDisplayDiff(event.details.diff);
       item = itemFromCounts(snapshot.absolutePath, additions, removals, cwd);
     }
     if (!item) return;
 
+    panel?.entriesAdded(1);
     history.push(item);
     requestRender();
-    const details = event.details && typeof event.details === "object" ? event.details : {};
+    const details =
+      event.details && typeof event.details === "object" ? event.details : {};
     return { details: { ...details, [STATE_KEY]: item } };
   });
 }
