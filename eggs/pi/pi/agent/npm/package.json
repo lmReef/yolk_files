@@ -2,6 +2,6 @@
   "name": "pi-extensions",
   "private": true,
   "dependencies": {
-    "@dietrichgebert/ponytail": "^4.8.4"
+    "@dietrichgebert/ponytail": "^4.9.0"
   }
 }
