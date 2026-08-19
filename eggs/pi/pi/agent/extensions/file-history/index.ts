@@ -8,6 +8,7 @@ import {
   type Theme,
 } from "@earendil-works/pi-coding-agent";
 import {
+  sliceByColumn,
   truncateToWidth,
   visibleWidth,
   type OverlayHandle,
@@ -84,6 +85,13 @@ export function diffCounts(before: string, after: string) {
 
 function relativePath(path: string, cwd: string): string {
   return relative(cwd, path) || basename(path);
+}
+
+export function truncateStartToWidth(text: string, maxWidth: number): string {
+  const width = visibleWidth(text);
+  if (width <= maxWidth) return text;
+  if (maxWidth <= 1) return maxWidth === 1 ? "…" : "";
+  return `…${sliceByColumn(text, width - maxWidth + 1, maxWidth - 1, true)}`;
 }
 
 function itemFromCounts(
@@ -248,11 +256,11 @@ class FileHistoryPanel {
           : index === window.items.length - 1 && window.hasBelow
             ? this.theme.fg("dim", "↓")
             : "";
+      const prefix = ` ${this.theme.fg(color, label)}${padding} `;
+      const pathWidth =
+        innerWidth - visibleWidth(indicator) - visibleWidth(prefix);
       output.push(
-        row(
-          ` ${this.theme.fg(color, label)}${padding} ${item.path}`,
-          indicator,
-        ),
+        row(`${prefix}${truncateStartToWidth(item.path, pathWidth)}`, indicator),
       );
     }
 

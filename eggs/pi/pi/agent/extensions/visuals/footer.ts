@@ -4,7 +4,21 @@ import {
   type ExtensionAPI,
   type ReadonlyFooterDataProvider,
 } from "@earendil-works/pi-coding-agent";
-import { visibleWidth } from "@earendil-works/pi-tui";
+import { truncateToWidth, visibleWidth } from "@earendil-works/pi-tui";
+
+export function rightAlign(left: string, right: string, width: number): string {
+  const clippedRight = truncateToWidth(right, width, "");
+  const clippedLeft = truncateToWidth(
+    left,
+    Math.max(0, width - visibleWidth(clippedRight) - 2),
+    "",
+  );
+  return (
+    clippedLeft +
+    " ".repeat(width - visibleWidth(clippedLeft) - visibleWidth(clippedRight)) +
+    clippedRight
+  );
+}
 
 export default function (pi: ExtensionAPI) {
   const closestJJBookmark = async (cwd: string) => {
@@ -89,13 +103,29 @@ export default function (pi: ExtensionAPI) {
           // Customize here. By default this is identical to pi's built-in footer:
           // lines[0] = working directory, git branch, and session name
           // lines[1] = token usage, cost, context, model, and thinking level
-          // lines[2] = extension statuses, when present
+          // lines[2] = extension statuses, when present; model details added below
           const stats = lines[1].replace(/^.*(\$)/, "$1");
           const padding = " ".repeat(Math.max(0, width - visibleWidth(stats)));
           lines[1] = theme.fg(
             "dim",
             stats.replace(/ {2,}/, (spaces) => spaces + padding),
           );
+
+          const model = ctx.model;
+          const modelDetails = model
+            ? [
+                `↑$${model.cost.input} ↓$${model.cost.output}`,
+                ...model.input,
+                ...(model.reasoning ? ["reasoning"] : []),
+              ].join(" • ")
+            : "";
+          if (modelDetails) {
+            lines[2] = rightAlign(
+              lines[2] ?? "",
+              theme.fg("dim", modelDetails),
+              width,
+            );
+          }
           return lines;
         },
       };

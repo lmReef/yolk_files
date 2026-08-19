@@ -6,6 +6,7 @@ import {
   newDeletionItems,
   removedKnownItems,
   summarizeChange,
+  truncateStartToWidth,
   type HistoryItem,
 } from "./index.ts";
 
@@ -35,6 +36,11 @@ test("summarizes new, deleted, added, removed, and mixed edits", () => {
     ),
     [{ kind: "D", count: 7, path: "src/untracked.ts" }],
   );
+});
+
+test("truncates the start of long paths", () => {
+  assert.equal(truncateStartToWidth("src/deep/file.ts", 12), "…eep/file.ts");
+  assert.equal(truncateStartToWidth("file.ts", 12), "file.ts");
 });
 
 test("windows history ten entries at a time with boundary indicators", () => {
