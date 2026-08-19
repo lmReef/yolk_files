@@ -90,6 +90,13 @@ config.keys = {
 		action = act.SpawnTab("CurrentPaneDomain"),
 	},
 	{
+		key = "Escape",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(win, pane)
+			local tab, window = pane:move_to_new_window()
+		end),
+	},
+	{
 		key = "x",
 		mods = "LEADER",
 		action = act.CloseCurrentPane({ confirm = false }),
