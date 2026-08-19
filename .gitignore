@@ -12,3 +12,4 @@ fish_variables
 sessions/
 auth.json
 models-store.json
+node_modules/
