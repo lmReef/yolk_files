@@ -14,6 +14,7 @@ export let eggs = #{
     hypr: #{ targets: "~/.config/hypr", enabled: io::command_available("hyprland"), templates: ["hyprland.conf", "keybinds.conf"] },
     paru: #{ targets: "~/.config/paru", enabled: "Arch" in SYSTEM.distro, templates: [] },
     yay: #{ targets: "~/.config/yay", enabled: "Arch" in SYSTEM.distro, templates: [] },
+    "gh-dash": #{ targets: "~/.config/gh-dash", enabled: io::command_available("gh-dash"), templates: [] },
 
     lsd: #{ targets: "~/.config/lsd", enabled: true, templates: [] },
     rofi: #{ targets: "~/.config/rofi", enabled: io::command_available("rofi"), templates: [] },
