@@ -23,7 +23,7 @@ config.window_padding = {
 	bottom = 0,
 }
 config.window_background_opacity = 0.9
-config.kde_window_background_blur = true
+config.wayland_window_background_blur = true
 config.command_palette_rows = 14
 
 -- tabs
