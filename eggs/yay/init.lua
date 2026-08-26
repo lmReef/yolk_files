@@ -8,7 +8,7 @@
 yay.opt.aururl = "https://aur.archlinux.org" -- Base AUR URL.
 yay.opt.aurrpcurl = "" -- AUR RPC endpoint URL; empty uses default endpoint.
 yay.opt.build_dir = os.getenv("HOME") .. "/.cache/yay" -- Build/cache directory for AUR packages.
-yay.opt.editor = os.getenv("EDITOR") or os.getenv("VISUAL") or "vi" -- Editor command used for PKGBUILD edits; empty uses VISUAL/EDITOR.
+yay.opt.editor = os.getenv("EDITOR") or os.getenv("VISUAL") or "vim" -- Editor command used for PKGBUILD edits; empty uses VISUAL/EDITOR.
 yay.opt.editor_flags = "" -- Extra flags passed to the editor command.
 yay.opt.makepkg_bin = "makepkg" -- makepkg executable (name in PATH or absolute path).
 yay.opt.makepkg_conf = "" -- makepkg.conf path; empty uses default makepkg config.
@@ -22,16 +22,16 @@ yay.opt.mflags = "" -- Extra flags passed to makepkg.
 yay.opt.sort_by = "" -- AUR search sort field: "votes" | "popularity" | "name" | "base" | "submitted" | "modified" | "".
 yay.opt.search_by = "name-desc" -- AUR search field: "name" | "name-desc" | "maintainer" | "submitter" | "depends" | "makedepends" | "optdepends" | "checkdepends" | "provides" | "conflicts" | "replaces" | "groups" | "keywords" | "comaintainers".
 yay.opt.git_flags = "" -- Extra flags passed to git.
-yay.opt.remove_make = "ask" -- Remove makedepends mode: "no" | "yes" | "ask" | "askyes".
+yay.opt.remove_make = "no" -- Remove makedepends mode: "no" | "yes" | "ask" | "askyes".
 yay.opt.sudo_bin = "sudo" -- Privilege elevation command.
 yay.opt.sudo_flags = "" -- Extra flags passed to the sudo command.
 yay.opt.rebuild = "no" -- Build mode: "no" | "yes" | "tree" | "all".
-yay.opt.answer_clean = "" --  yay v13.0.1+ Pre-select clean menu answer: "" | "All" | "None" | "Installed" | "NotInstalled" (also accepts menu syntax: ranges, ^n, "abort").
-yay.opt.answer_diff = "" --  yay v13.0.1+ Pre-select diff menu answer: "" | "All" | "None" | "Installed" | "NotInstalled" (also accepts menu syntax: ranges, ^n, "abort").
+yay.opt.answer_clean = "None" --  yay v13.0.1+ Pre-select clean menu answer: "" | "All" | "None" | "Installed" | "NotInstalled" (also accepts menu syntax: ranges, ^n, "abort").
+yay.opt.answer_diff = "All" --  yay v13.0.1+ Pre-select diff menu answer: "" | "All" | "None" | "Installed" | "NotInstalled" (also accepts menu syntax: ranges, ^n, "abort").
 yay.opt.answer_edit = "" --  yay v13.0.1+ Pre-select edit menu answer: "" | "All" | "None" | "Installed" | "NotInstalled" (also accepts menu syntax: ranges, ^n, "abort").
 
 -- Integers
-yay.opt.request_split_n = 150 -- Max packages per AUR RPC request (use values > 0).
+yay.opt.request_split_n = 20 -- Max packages per AUR RPC request (use values > 0).
 yay.opt.completion_refresh_time = 7 -- Completion cache refresh days: -1 (never), 0 (always), >0 (every N days).
 yay.opt.max_concurrent_downloads = 0 -- Parallel PKGBUILD source downloads; 0 uses CPU count.
 
@@ -43,7 +43,7 @@ yay.opt.clean_after = true -- Remove untracked files after install.
 yay.opt.keep_src = false -- Keep pkg/ and src/ after successful builds.
 yay.opt.provides = true -- Resolve matching providers when dependencies are ambiguous.
 yay.opt.pgp_fetch = true -- Prompt to import unknown PGP keys from validpgpkeys.
-yay.opt.clean_menu = true -- Show pre-build clean menu.
+yay.opt.clean_menu = false -- Show pre-build clean menu.
 yay.opt.diff_menu = true -- Show diff menu before building.
 yay.opt.edit_menu = false -- Show PKGBUILD edit menu before building.
 yay.opt.combined_upgrade = true -- Use combined repo+AUR upgrade flow on sysupgrade.
