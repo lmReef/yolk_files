@@ -1,13 +1,16 @@
 {
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "0.84.4",
   "theme": "dark",
   "enableInstallTelemetry": false,
-  "defaultProvider": "opencode",
-  "defaultModel": "minimax-m3",
+  "defaultProvider": "github-copilot",
+  "defaultModel": "gpt-5.6-sol",
   "enabledModels": [
     "opencode/minimax-m3",
     "opencode/deepseek-v4-flash",
-    "opencode/big-pickle"
+    "opencode/big-pickle",
+    "github-copilot/gpt-5.6-sol",
+    "github-copilot/kimi-k2.7-code",
+    "github-copilot/claude-opus-4.8"
   ],
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,

@@ -43,9 +43,26 @@ return {
 	-- {
 	-- 	"MeanderingProgrammer/render-markdown.nvim",
 	-- 	dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-	-- 	opts = {},
-	-- 	lazy = true,
+	-- 	opts = {
+	-- 		heading = {
+	-- 			border = true,
+	-- 			above = "",
+	-- 			below = "‾",
+	-- 			backgrounds = {},
+	-- 		},
+	-- 		code = {
+	-- 			inline = false,
+	-- 			style = "language",
+	-- 		},
+	-- 	},
+	-- 	ft = "markdown",
 	-- },
+	{
+		"OXY2DEV/markview.nvim",
+		lazy = false,
+		-- Completion for `blink.cmp`
+		-- dependencies = { "saghen/blink.cmp" },
+	},
 
 	{
 		"rcarriga/nvim-notify",

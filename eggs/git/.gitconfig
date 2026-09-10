@@ -1,12 +1,7 @@
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
 [user]
 	email = git@reefmatson.com
 	name = lmReef
+	signingkey = /home/reef.matson/.ssh/github.pub
 [init]
 	defaultBranch = main
 [alias]
@@ -15,6 +10,10 @@
 	st = status
 	a = add
 	c = commit
+[gpg]
+	format = ssh
+[commit]
+	gpgSign = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -48,3 +47,6 @@
 
 [core]
 	excludesFile = ~/.gitignore
+	editor = nvim
+[gpg "ssh"]
+	allowedSignersFile = ~/.config/git/allowed-signers

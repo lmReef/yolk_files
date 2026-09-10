@@ -24,13 +24,13 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		keys = {
 			-- terminal
-			{
-				"<leader>t",
-				function()
-					Snacks.terminal()
-				end,
-				desc = "Toggle terminal",
-			},
+			-- {
+			-- 	"<leader>t",
+			-- 	function()
+			-- 		Snacks.terminal()
+			-- 	end,
+			-- 	desc = "Toggle terminal",
+			-- },
 
 			-- scratch buffer
 			{
