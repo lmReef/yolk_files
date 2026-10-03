@@ -15,7 +15,7 @@ local scheme = wezterm.get_builtin_color_schemes()[theme]
 config.color_scheme = theme
 config.command_palette_bg_color = scheme.background
 config.command_palette_fg_color = scheme.foreground
-config.font_size = 14
+config.font_size = 13
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -23,7 +23,7 @@ config.window_padding = {
 	bottom = 0,
 }
 config.window_background_opacity = 0.9
-config.wayland_window_background_blur = true
+-- config.wayland_window_background_blur = true
 config.command_palette_rows = 14
 
 -- tabs
@@ -77,12 +77,12 @@ config.keys = {
 	{
 		key = "s",
 		mods = "LEADER",
-		action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+		action = act.SplitPane({ direction = "Right", size = { Percent = 38 } }),
 	},
 	{
 		key = "d",
 		mods = "LEADER",
-		action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+		action = act.SplitPane({ direction = "Down", size = { Percent = 35 } }),
 	},
 	{
 		key = "c",
