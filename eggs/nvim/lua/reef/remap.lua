@@ -33,48 +33,49 @@ vim.keymap.set("n", "<leader>ws", ":noa w<cr>", { desc = ":noa w" })
 vim.keymap.set("n", "<leader>wq", ":wq<cr>", { desc = ":wq" })
 vim.keymap.set("n", "<leader>q", ":q!<cr>", { desc = ":q!" })
 
--- run / build / tool
-local function get_cmd()
-	local Snacks = require("snacks")
-	local function run_cmd(c, show_output)
-		if show_output then
-			Snacks.terminal.open(c, {
-				win = { position = "bottom" },
-				start_insert = false,
-				auto_insert = true,
-				interactive = false,
-				auto_close = true,
-			})
-		else
-			vim.cmd("silent !" .. c)
-		end
-	end
 
-	-- check for env var override first
-	local from_env = os.getenv("nvim_run")
-	if from_env then
-		run_cmd(from_env, true)
-	else
-		-- file based cmd handling
-		local ft = vim.api.nvim_get_option_value("ft", {})
-		local fp = vim.fn.expand("%")
+-- -- run / build / tool
+-- local function get_cmd()
+-- 	local Snacks = require("snacks")
+-- 	local function run_cmd(c, show_output)
+-- 		if show_output then
+-- 			Snacks.terminal.open(c, {
+-- 				win = { position = "bottom" },
+-- 				start_insert = false,
+-- 				auto_insert = true,
+-- 				interactive = false,
+-- 				auto_close = true,
+-- 			})
+-- 		else
+-- 			vim.cmd("silent !" .. c)
+-- 		end
+-- 	end
 
-		if ft == "gdscript" then
-			run_cmd("godot --remote-debug tcp://127.0.0.1:6007", true)
-		elseif ft == "rust" then
-			run_cmd("cargo run --release", true)
-		elseif ft == "javascript" or ft == "typescript" then
-			run_cmd("pnpm run dev", true)
-		elseif ft == "nextflow" then
-			if string.match(fp, ".test") then
-				run_cmd("nf-test test " .. fp, true)
-			else
-				run_cmd("just dry-run", true)
-			end
-		elseif ft == "dockerfile" then
-			run_cmd("docker build . --build-arg 'DOCKER_CONTEXT=.' --network=host", true)
-		end
-	end
-end
+-- 	-- check for env var override first
+-- 	local from_env = os.getenv("nvim_run")
+-- 	if from_env then
+-- 		run_cmd(from_env, true)
+-- 	else
+-- 		-- file based cmd handling
+-- 		local ft = vim.api.nvim_get_option_value("ft", {})
+-- 		local fp = vim.fn.expand("%")
 
-vim.keymap.set("n", "<leader>n", get_cmd, { desc = "Run command in next pane" })
+-- 		if ft == "gdscript" then
+-- 			run_cmd("godot --remote-debug tcp://127.0.0.1:6007", true)
+-- 		elseif ft == "rust" then
+-- 			run_cmd("cargo run --release", true)
+-- 		elseif ft == "javascript" or ft == "typescript" then
+-- 			run_cmd("pnpm run dev", true)
+-- 		elseif ft == "nextflow" then
+-- 			if string.match(fp, ".test") then
+-- 				run_cmd("nf-test test " .. fp, true)
+-- 			else
+-- 				run_cmd("just dry-run", true)
+-- 			end
+-- 		elseif ft == "dockerfile" then
+-- 			run_cmd("docker build . --build-arg 'DOCKER_CONTEXT=.' --network=host", true)
+-- 		end
+-- 	end
+-- end
+
+-- vim.keymap.set("n", "<leader>n", get_cmd, { desc = "Run command in next pane" })

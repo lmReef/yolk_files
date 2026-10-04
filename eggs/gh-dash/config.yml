@@ -1,12 +1,14 @@
 prSections:
   - title: My Pull Requests
-    filters: is:open author:@me
+    filters: author:@me is:open
   - title: Needs My Review
-    filters: is:open user-review-requested:@me
+    filters: user-review-requested:@me is:open
   - title: Needs Team Review
-    filters: is:open review-requested:@me
+    filters: review-requested:@me -author:sir-dependalot[bot] is:open
   - title: Involved
-    filters: is:open involves:@me -author:@me
+    filters: involves:@me -author:@me is:open
+  - title: Open Pull Requests
+    filters: -author:sir-dependalot[bot] is:open
 issuesSections:
   - title: My Issues
     filters: is:open author:@me

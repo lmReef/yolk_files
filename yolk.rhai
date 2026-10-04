@@ -3,7 +3,7 @@ export let data = #{ };
 export let eggs = #{
     // ~/
     git: #{ targets: #{".gitconfig": "~/.gitconfig"}, enabled: true, templates: [] },
-    tmux: #{ targets: #{".tmux.conf": "~/.tmux.conf"}, enabled: true, templates: [] },
+    tmux: #{ targets: #{".tmux.conf": "~/.tmux.conf"}, enabled: io::command_available("tmux"), templates: [] },
     pi: #{ targets: #{"pi": "~/.pi"}, enabled: io::command_available("pi"), templates: [] },
     ".agents": #{ targets: "~/.agents", enabled: true, templates: [] },
 

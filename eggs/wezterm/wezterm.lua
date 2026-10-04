@@ -3,7 +3,7 @@ local config = wezterm.config_builder()
 local act = wezterm.action
 
 -- behaviours
-config.default_prog = { "/usr/bin/env", "fish", "-l" }
+config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
 config.max_fps = 180
 config.window_close_confirmation = "NeverPrompt"
 config.switch_to_last_active_tab_when_closing_tab = true
@@ -15,7 +15,7 @@ local scheme = wezterm.get_builtin_color_schemes()[theme]
 config.color_scheme = theme
 config.command_palette_bg_color = scheme.background
 config.command_palette_fg_color = scheme.foreground
-config.font_size = 13
+config.font_size = 15
 config.window_padding = {
 	left = 0,
 	right = 0,
@@ -23,14 +23,13 @@ config.window_padding = {
 	bottom = 0,
 }
 config.window_background_opacity = 0.9
--- config.wayland_window_background_blur = true
 config.command_palette_rows = 14
 
 -- tabs
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
-config.show_close_tab_button_in_tabs = false
+-- config.show_close_tab_button_in_tabs = false
 config.show_new_tab_button_in_tab_bar = false
 config.show_tab_index_in_tab_bar = true
 config.colors = {

@@ -1,12 +1,8 @@
-[credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-[credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
 [user]
 	email = git@reefmatson.com
 	name = lmReef
+[core]
+	excludesFile = ~/.gitignore
 [init]
 	defaultBranch = main
 [alias]
@@ -23,28 +19,14 @@
 [push]
 	autoSetupRemote = true
 [pull]
-	ff = only
+	rebase = true
 [merge]
 	tool = nvimdiff
 [mergetool "nvimdiff"]
     layout = LOCAL,REMOTE
-[diff "jupyternotebook"]
-	command = git-nbdiffdriver diff -s
-[merge "jupyternotebook"]
-	driver = git-nbmergedriver merge %O %A %B %L %P
-	name = jupyter notebook merge driver
-[difftool "nbdime"]
-	cmd = git-nbdifftool diff -s \"$LOCAL\" \"$REMOTE\" \"$BASE\"
 [difftool]
 	prompt = false
-[mergetool "nbdime"]
-	cmd = git-nbmergetool merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [mergetool]
 	prompt = false
-[includeIf "gitdir:~/projects/netvalue/**"]
-	path = ~/.gitconfig-netvalue
-[includeIf "gitdir:~/projects/tempus/**"]
-	path = ~/.gitconfig-tempus
-
-[core]
-	excludesFile = ~/.gitignore
+[includeIf "gitdir:~/projects/centrapay/**"]
+	path = ~/.gitconfig-centrapay

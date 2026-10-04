@@ -1,6 +1,6 @@
 ---
 name: pr-desc
-description: Updates the authenticated user's GitHub pull request description with the gh CLI, using their three most recent PRs in the repository as a style guide and optional Jira issue context. Use when asked to write, refresh, or update an existing PR body.
+description: Updates the authenticated user's GitHub pull request description with the gh CLI, using their three most recent PRs in the repository as a style guide. Use when asked to write, refresh, or update an existing PR body.
 ---
 
 # PR Description
@@ -9,17 +9,7 @@ Update an existing PR body from its actual changes. Use prior PRs only to match 
 
 ## Inputs
 
-Accept an optional PR number or URL and an optional Jira issue key such as `ABC-123`. If no PR is supplied, list the most recent PRs authored by @me and ask which to use.
-
-## Jira Context
-
-1. If the user supplied an issue key, use it.
-2. Otherwise run `git rev-parse --abbrev-ref HEAD` and look for a Jira key matching a project key followed by a number, such as `ABC-123`.
-3. Use the branch key only when exactly one unambiguous match exists. Normalize it to uppercase.
-4. If no key or multiple plausible keys are found, ask whether to continue without Jira context or which key to use. Do not guess.
-5. Fetch the selected issue with `jira issue view ISSUE-KEY --plain`. Use its summary, description, and acceptance criteria as context. If Jira lookup fails, report the failure and ask whether to continue without it.
-
-Do not copy unrelated Jira details, comments, private operational data, or acceptance criteria the PR does not satisfy. Never claim the issue is complete merely because it is linked.
+Accept an optional PR number or URL and. If no PR is supplied, list the most recent PRs authored by @me and ask which to use.
 
 ## Workflow
 
@@ -34,8 +24,8 @@ Do not copy unrelated Jira details, comments, private operational data, or accep
    - bullets versus prose
    - testing or checklist format
    - placement of issue references
-7. Draft a body describing only the target PR. Preserve accurate, useful content from its existing body and include relevant Jira context when available.
-8. Verify every statement against the diff, commits, existing checks, or Jira issue. Do not state that tests passed unless there is evidence.
+7. Draft a body describing only the target PR. Preserve accurate, useful content from its existing body.
+8. Verify every statement against the diff, commits, and existing checks. Do not state that tests passed unless there is evidence.
 9. Save the exact current and proposed bodies to separate temporary files. Avoid shell interpolation of body content.
 10. Show a labeled side-by-side preview, with current body on the left and proposed body on the right, using `diff --side-by-side --width="${COLUMNS:-160}" CURRENT PROPOSED || true`.
 11. Ask for explicit approval. If revisions are requested, update the proposed file and show a new side-by-side diff. If there is no difference, make no update.
@@ -55,4 +45,4 @@ Do not copy unrelated Jira details, comments, private operational data, or accep
 
 ## Result
 
-Report the updated PR URL, Jira issue used or `none`, prior PRs used as style references, and any facts or sections that could not be verified.
+Report the updated PR URL. prior PRs used as style references, and any facts or sections that could not be verified.

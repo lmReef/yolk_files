@@ -1,17 +1,21 @@
 {
-  "lastChangelogVersion": "0.83.0",
+  "lastChangelogVersion": "0.87.1",
   "theme": "dark",
   "enableInstallTelemetry": false,
-  "defaultProvider": "opencode",
-  "defaultModel": "minimax-m3",
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-8",
   "enabledModels": [
     "opencode/minimax-m3",
     "opencode/deepseek-v4-flash",
-    "opencode/big-pickle"
+    "opencode/big-pickle",
+    "anthropic/claude-haiku-4-5",
+    "anthropic/claude-opus-5",
+    "anthropic/claude-sonnet-5"
   ],
   "defaultThinkingLevel": "high",
   "hideThinkingBlock": true,
   "packages": [
-    "npm:@dietrichgebert/ponytail"
+    "npm:@dietrichgebert/ponytail",
+    "git:github.com/huggingface/pi-llama"
   ]
 }

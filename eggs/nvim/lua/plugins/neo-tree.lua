@@ -33,7 +33,7 @@ return {
 					visible = true,
 					hide_dotfiles = false,
 					hide_gitignored = true,
-					never_show = { ".git", ".github", "__pycache__", ".pytest_cache", ".venv" },
+					never_show = { ".git", ".github", "__pycache__", ".pytest_cache", ".venv", "node_modules", ".jj" },
 				},
 				components = {
 					harpoon_index = function(config, node, _)

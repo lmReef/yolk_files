@@ -20,45 +20,45 @@ return {
 		},
 	},
 
-	{
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		opts = {
-			ensure_installed = {
-				-- vim
-				"vim-language-server",
-				"vint",
-				-- lua
-				"stylua",
-				"selene",
-				"lua-language-server",
-				-- bash/zsh/fish
-				"bash-language-server",
-				"shfmt",
-				"beautysh",
-				"shellcheck",
-				"shellharden",
-				"fish_lsp",
-				-- python
-				"ty",
-				"ruff",
-				-- js
-				"typescript-language-server",
-				"svelte-language-server",
-				"biome", -- for lsp, not formatter
-				-- "prettierd",
-				-- docker
-				"dockerfile-language-server",
-				-- c
-				"clangd",
-				"cpplint",
-				"clang-format",
-				-- other
-				"gdtoolkit",
-				"rustfmt",
-				"hyprls",
-				"ts_query_ls", -- treesitter query files
-				"write-good",
-			},
-		},
-	},
+	-- {
+	-- 	"WhoIsSethDaniel/mason-tool-installer.nvim",
+	-- 	opts = {
+	-- 		ensure_installed = {
+	-- 			-- vim
+	-- 			"vim-language-server",
+	-- 			"vint",
+	-- 			-- lua
+	-- 			"stylua",
+	-- 			"selene",
+	-- 			"lua-language-server",
+	-- 			-- bash/zsh/fish
+	-- 			"bash-language-server",
+	-- 			"shfmt",
+	-- 			"beautysh",
+	-- 			"shellcheck",
+	-- 			"shellharden",
+	-- 			"fish_lsp",
+	-- 			-- python
+	-- 			"ty",
+	-- 			"ruff",
+	-- 			-- js
+	-- 			"typescript-language-server",
+	-- 			"svelte-language-server",
+	-- 			"biome", -- for lsp, not formatter
+	-- 			-- "prettierd",
+	-- 			-- docker
+	-- 			"dockerfile-language-server",
+	-- 			-- c
+	-- 			"clangd",
+	-- 			"cpplint",
+	-- 			"clang-format",
+	-- 			-- other
+	-- 			"gdtoolkit",
+	-- 			"rustfmt",
+	-- 			"hyprls",
+	-- 			"ts_query_ls", -- treesitter query files
+	-- 			"write-good",
+	-- 		},
+	-- 	},
+	-- },
 }
