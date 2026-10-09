@@ -3,7 +3,25 @@ local config = wezterm.config_builder()
 local act = wezterm.action
 
 -- behaviours
-config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
+-- resolve fish portably: macOS (arm/intel homebrew) then Linux
+local function first_executable(candidates, fallback)
+	for _, p in ipairs(candidates) do
+		-- existence probe, no side effect
+		if os.rename(p, p) then
+			return p
+		end
+	end
+	return fallback
+end
+
+local fish_candidates
+if wezterm.target_triple:find("darwin") then
+	fish_candidates = { "/opt/homebrew/bin/fish", "/usr/local/bin/fish", "/usr/bin/fish" }
+else
+	fish_candidates = { "/home/linuxbrew/.linuxbrew/bin/fish", "/usr/bin/fish", "/bin/fish" }
+end
+
+config.default_prog = { first_executable(fish_candidates, "fish"), "-l" }
 config.max_fps = 180
 config.window_close_confirmation = "NeverPrompt"
 config.switch_to_last_active_tab_when_closing_tab = true
