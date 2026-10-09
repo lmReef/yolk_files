@@ -13,3 +13,9 @@ sessions/
 auth.json
 models-store.json
 node_modules/
+
+# lockfiles
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lockb
