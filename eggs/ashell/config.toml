@@ -1,4 +1,4 @@
-region = "en-NZ"
+# region = "en-NZ"
 enable_esc_key = true
 
 [animations]

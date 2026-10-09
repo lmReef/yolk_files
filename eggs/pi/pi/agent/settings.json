@@ -1,21 +1,21 @@
 {
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "1.1.0",
   "theme": "dark",
   "enableInstallTelemetry": false,
-  "defaultProvider": "anthropic",
-  "defaultModel": "claude-opus-4-8",
+  "defaultProvider": "opencode",
+  "defaultModel": "deepseek-v4-flash",
   "enabledModels": [
-    "opencode/minimax-m3",
     "opencode/deepseek-v4-flash",
-    "opencode/big-pickle",
-    "anthropic/claude-haiku-4-5",
-    "anthropic/claude-opus-5",
-    "anthropic/claude-sonnet-5"
+    "opencode/deepseek-v4.1-flash"
   ],
   "defaultThinkingLevel": "high",
+  "retry": {
+    "maxRetries": 5,
+    "baseDelayMs": 2000
+  },
   "hideThinkingBlock": true,
   "packages": [
-    "npm:@dietrichgebert/ponytail",
+    "npm:pi-subagents",
     "git:github.com/huggingface/pi-llama"
   ]
 }
