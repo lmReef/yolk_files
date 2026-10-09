@@ -1,0 +1,37 @@
+-- https://wiki.hyprland.org/Configuring/
+
+local vars = require("vars")
+
+require("monitors")
+require("visuals")
+require("input")
+require("rules")
+require("keybinds")
+
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+hl.env("GDK_BACKEND", "wayland,x11,*")
+hl.env("QT_QPA_PLATFORM", "wayland;xcb")
+hl.env("SDL_VIDEODRIVER", "wayland")
+hl.env("CLUTTER_BACKEND", "wayland")
+
+hl.env("XCURSOR_THEME", "BreezeX-RoséPine")
+hl.env("XCURSOR_SIZE", "24")
+hl.env("HYPRCURSOR_THEME", "rose-pine-hyprcursor")
+hl.env("HYPRCURSOR_SIZE", "24")
+
+hl.on("hyprland.start", function()
+	hl.exec_cmd("nm-applet")
+	hl.exec_cmd("blueman-applet")
+	hl.exec_cmd("gnome-keyring-daemon --start")
+	hl.exec_cmd("wl-clip-persist --clipboard regular")
+	hl.exec_cmd("awww-daemon")
+	hl.exec_cmd("openrgb -p main")
+	hl.exec_cmd("swaync")
+	hl.exec_cmd(vars.taskbar)
+	hl.exec_cmd(vars.lock)
+	hl.exec_cmd("~/.local/bin/scripts/check_sunset.sh")
+	hl.exec_cmd("keyd-application-mapper -d")
+	hl.exec_cmd("steam -silent")
+end)
