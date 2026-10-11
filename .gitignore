@@ -13,6 +13,8 @@ sessions/
 auth.json
 models-store.json
 node_modules/
+git/
+npm/
 
 # lockfiles
 package-lock.json
