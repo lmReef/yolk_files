@@ -1,3 +1,4 @@
+abbr c claude
 abbr oc opencode
 
 abbr hd hunk diff --watch
