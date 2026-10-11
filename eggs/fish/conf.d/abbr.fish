@@ -1,5 +1,8 @@
 abbr oc opencode
 
+abbr hd hunk diff --watch
+abbr hdm hunk diff master
+
 # VCS
 
 abbr g git
