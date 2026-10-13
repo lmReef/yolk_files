@@ -7,7 +7,7 @@ enabled = true
 [modules]
 left = ["Workspaces", "Tray", "MediaPlayer"]
 center = ["Tempo"]
-right = ["SystemInfo", ["Privacy", "Settings", "Notifications"]]
+right = ["OpenCodeUsage", "SystemInfo", ["Privacy", "Settings", "Notifications"]]
 
 [appearance]
 scale_factor = 1
@@ -35,3 +35,9 @@ weather_location = { Coordinates = [-37.78333, 175.28333] }
 
 [tray]
 right_click = "Menu"
+
+[[CustomModule]]
+name = "OpenCodeUsage"
+type = "Button"
+icon = "󰚩"
+listen_cmd = "bash $HOME/.config/ashell/opencode-usage.sh"
