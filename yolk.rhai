@@ -16,6 +16,7 @@ export let eggs = #{
     paru: #{ targets: "~/.config/paru", enabled: "Arch" in SYSTEM.distro, templates: [] },
     yay: #{ targets: "~/.config/yay", enabled: "Arch" in SYSTEM.distro, templates: [] },
     "gh-dash": #{ targets: "~/.config/gh-dash", enabled: io::command_available("gh-dash"), templates: [] },
+    opencode: #{ targets: "~/.config/opencode", enabled: io::command_available("opencode"), templates: [] },
 
     lsd: #{ targets: "~/.config/lsd", enabled: true, templates: [] },
     rofi: #{ targets: "~/.config/rofi", enabled: io::command_available("rofi"), templates: [] },
