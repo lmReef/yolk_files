@@ -1,7 +1,5 @@
 ## Rules
 
-- NEVER push to vcs (`git`/`jj`/etc)
-
 ## Tool preferences
 
 - Use `rg` instead of `grep`.
