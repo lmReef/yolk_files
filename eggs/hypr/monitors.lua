@@ -13,14 +13,12 @@ hl.monitor({
 	output = vars.pm0,
 	mode = "highres@highrr",
 	position = "auto",
-	transform = 0,
 })
 
 hl.monitor({
 	output = vars.pm1,
-	mode = "highres@highrr",
+	mode = "1920x1080",
 	position = "auto-left",
-	transform = 0,
 })
 
 hl.monitor({
