@@ -1,15 +1,36 @@
 {
   "$schema": "https://opencode.ai/v2/cli.json",
   "theme": {
-    "name": "kanagawa"
+    "name": "kanagawa",
+    "mode": "dark"
   },
   "diffs": {
-    "wrap": "word"
+    "wrap": "word",
+    "view": "auto",
+    "single": false
   },
   "session": {
-    "sidebar": "auto",
+    "sidebar": "hide",
     "scrollbar": false,
-    "thinking": "hide"
+    "thinking": "show",
+    "markdown": "rendered",
+    "grouping": "auto",
+    "verbosity": "low",
+    "image_preview": true,
+    "permissions": "autoaccept"
   },
-  "animations": true
+  "animations": true,
+  "tabs": {
+    "mode": "off"
+  },
+  "prompt": {
+    "image_preview": false
+  },
+  "attention": {
+    "notifications": true,
+    "sound": true
+  },
+  "terminal": {
+    "copy": "select"
+  }
 }

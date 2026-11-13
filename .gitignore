@@ -8,14 +8,6 @@ lazy-lock.json
 
 fish_variables
 
-# pi
-sessions/
-auth.json
-models-store.json
-node_modules/
-git/
-npm/
-
 # lockfiles
 package-lock.json
 pnpm-lock.yaml
